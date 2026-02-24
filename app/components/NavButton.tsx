@@ -18,10 +18,10 @@ export function NavButton({
   }, [params]);
 
   return (
-    <div className="text-xl p-5 px-15 border-x border-black hover:bg-amber-100">
+    <button className="text-xl p-5 px-15 border-x border-black hover:bg-amber-100">
       <Link href={href} className={params === href ? "underline" : ""}>
         {children}
       </Link>
-    </div>
+    </button>
   );
 }
