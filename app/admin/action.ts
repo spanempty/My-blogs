@@ -18,7 +18,7 @@ export async function publishPost({
 }) {
   const supabase = await createClient();
 
-  let imagePath: ;
+  let imagePath: any = null;
 
   if (image && image.size > 0) {
     const fileName = `${Date.now()}-${image.name}`;
@@ -26,15 +26,14 @@ export async function publishPost({
       .from("asset")
       .upload(fileName, image);
     if (uploadData) {
-    //   imagePath = supabase.storage.from("asset").getPublicUrl(fileName)
-    //     .data.publicUrl;
-    imagePath = supabase.storage
-.from('blog-assets')
-.getPublicUrl(uploadData.path)
+      //   imagePath = supabase.storage.from("asset").getPublicUrl(fileName)
+      //     .data.publicUrl;
+      imagePath = supabase.storage
+        .from("blog-assets")
+        .getPublicUrl(uploadData.path);
     }
     console.log(uploadError);
-}
-
+  }
 
   const { data, error } = await supabase.from("blog").insert({
     title,
